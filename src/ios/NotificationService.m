@@ -2,7 +2,7 @@
 //  NotificationService.m
 //  notificationserviceextension
 //
-//  Created by skriaa on 29/07/2020.
+//  Created by skriaa on 03/11/2020.
 //
 
 @import Firebase;
@@ -37,16 +37,17 @@
         NSUserDefaults *appGroupUserDefaults;
         appGroupUserDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.jalios.jmobile.shareextension"];
         
-        NSString *EncryptionKey = [appGroupUserDefaults stringForKey:@"key"];
-        EncryptionKey = [EncryptionKey stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        NSString *EncryptionMetaData = [appGroupUserDefaults stringForKey:@"encryptionMetaData"];
+        
+        NSData *jsonData = [EncryptionMetaData dataUsingEncoding:NSUTF8StringEncoding];
+        NSMutableDictionary *s = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
+        
+        NSString *EncryptionKey =[s objectForKey:@"key"];
+        NSString *algo = [s objectForKey:@"algo"];
+        NSString *transformation = [s objectForKey:@"transformation"];
+
         NSLog(@"key: %@", EncryptionKey);
-        
-        NSString *algo = [appGroupUserDefaults stringForKey:@"algo"];
-        algo = [algo stringByReplacingOccurrencesOfString:@"\"" withString:@""];
         NSLog(@"algo: %@", algo);
-        
-        NSString *transformation = [appGroupUserDefaults stringForKey:@"transformation"];
-        transformation = [transformation stringByReplacingOccurrencesOfString:@"\"" withString:@""];
         NSLog(@"transformation: %@", transformation);
         
         if((EncryptionKey != nil) && (algo != nil) && (transformation != nil)){
