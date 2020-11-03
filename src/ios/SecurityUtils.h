@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SecurityUtils : NSObject
-+ (NSString *)decrypt:(NSString *)plainText error:(NSError **)error;
++ (NSString *)decrypt:(NSString *)plainText key:(NSString *)key algo:(NSString *)algo transformation:(NSString *)transformation error:(NSError **)error;
 @end
 
 NS_ASSUME_NONNULL_END
