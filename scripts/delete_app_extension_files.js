@@ -5,7 +5,7 @@ var fs = require("fs");
 var helpers = require("./helpers");
 
 var IOS_DIR = "platforms/ios";
-var FILE_NAME_LIST = ["Info.plist", "NotificationService.h", "NotificationService.m"];
+var FILE_NAME_LIST = ["Info.plist", "NotificationService.h", "NotificationService.m", "SecurityUtils.h", "SecurityUtils.m"];
 var SERVICE_DEST_DIR = `${IOS_DIR}/FCMNotificationService`;
 
 function deleteFiles() {
